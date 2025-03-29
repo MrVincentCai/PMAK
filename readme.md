@@ -12,7 +12,7 @@ The turnover number ($k_{cat}$) is a critical parameter in enzyme kinetics, repr
 
 2.Generate reaction embedding by RXNFP
 
-```python ger_rxnfp.py```
+```python get_rxnfp.py```
 
 3.Train the PMAK model
 
