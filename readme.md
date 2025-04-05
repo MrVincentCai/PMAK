@@ -6,14 +6,22 @@ The turnover number ($k_{cat}$) is a critical parameter in enzyme kinetics, repr
 ![model.png](./images/model.png)
 
 # Usage
-1.Generate enzyme embedding by Pro-T5-XL
+1.Split the raw dataset
+
+```python split_data.py```
+
+2.Generate enzyme embedding by Pro-T5-XL
 
 ``python get_prot5.py``
 
-2.Generate reaction embedding by RXNFP
+3.Generate reaction embedding by RXNFP
 
 ```python get_rxnfp.py```
 
-3.Train the PMAK model
+4.Add embeddings of enzyme and reaction to dataframe
+
+```python Add_representation.py```
+
+5.Train the PMAK model
 
 ```python train_kcat.py```
