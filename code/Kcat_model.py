@@ -75,7 +75,7 @@ class InteractPre(nn.Module):
 
         return context_vector
 
-    def forward(self, reactions, protein):  # , crafted_feature
+    def forward(self, reactions, protein, use_gate=False):  # , crafted_feature
         # print("reactions shape:", reactions.shape)
         # print("protein shape:", protein.shape)
         protein = protein.permute(0, 2, 1)
@@ -90,9 +90,15 @@ class InteractPre(nn.Module):
         # aggreX, att = self.bcn(reactions.unsqueeze(0), protein.unsqueeze(0))
         # print("aggreX shape:", aggreX.shape)
 
-
-
         self.interact = aggreX
+
+        if use_gate:
+            gate = torch.sigmoid(self.gate(aggreX))
+            protein = aggreX[:, :64]
+            rxnfp = aggreX[:, 64:]
+            protein = torch.mul(gate, protein)
+            rxnfp = torch.mul((1 - gate), rxnfp)
+            aggreX = torch.cat((rxnfp, protein), dim=1)
 
         output = self.drop1(F.leaky_relu(self.fc1(aggreX)))
         output = self.drop2(F.leaky_relu(self.fc2(output)))

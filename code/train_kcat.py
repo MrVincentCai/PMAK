@@ -268,7 +268,7 @@ for i in range(5):
 #
 # model = InteractPre().to(CFG.DEVICE)
 #
-# model.load_state_dict(torch.load('./save_model/test_enzyme_cold.pth'))
+# model.load_state_dict(torch.load('./save_model/test_enzyme_cold.pth'), strict=False)
 #
 # mse, r2, pearson_corr, mae, all_preds, all_labels = get_results(model, test_data, CFG)
 # sss
