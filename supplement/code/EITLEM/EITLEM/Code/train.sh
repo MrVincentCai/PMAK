@@ -1,0 +1,1 @@
+python iter_train_scripts.py -i 1 -t iterativeTrain -m MACCSKeys -d 0 -e cold_enzyme_test -n 1
